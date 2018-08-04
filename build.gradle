@@ -1,0 +1,50 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.3.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        // Spock snapshots are available from the Sonatype OSS snapshot repository
+        maven { url "http://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath "org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}"
+        classpath "gradle.plugin.org.unbroken-dome.gradle-plugins:gradle-testsets-plugin:1.5.1"
+    }
+}
+
+apply plugin: "groovy"
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+apply from: 'gradle/integrationTest.gradle'
+apply from: 'gradle/codeCoverage.gradle'
+
+group = 'com.industriousgnomes'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter')
+    compileOnly('org.projectlombok:lombok')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    // mandatory dependencies for using Spock
+    compile "org.codehaus.groovy:groovy-all:2.4.10"
+    testCompile "org.spockframework:spock-core:1.1-groovy-2.4"
+    testCompile "org.spockframework:spock-spring:1.1-groovy-2.4"  // required to use spring
+
+
+    // optional dependencies for using Spock
+    testCompile "org.hamcrest:hamcrest-core:1.3" // only necessary if Hamcrest matchers are used
+    testRuntime "net.bytebuddy:byte-buddy:1.6.5"          // allows mocking of classes (in addition to interfaces)
+    testRuntime "org.objenesis:objenesis:2.5.1"    // allows mocking of classes without default constructor (together with CGLIB)
+
+}

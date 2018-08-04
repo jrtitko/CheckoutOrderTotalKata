@@ -1,0 +1,82 @@
+######################
+# Eclipse
+######################
+*.pydevproject
+.project
+.metadata
+tmp/
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.classpath
+.settings/
+.loadpath
+/src/main/resources/rebel.xml
+ 
+# Locally stored "Eclipse launch configurations"
+*.launch
+ 
+######################
+# Intellij
+######################
+.idea/
+*.iml
+*.iws
+*.ipr
+*.ids
+*.orig
+out/
+ 
+######################
+# Maven
+######################
+log/
+target/
+ 
+######################
+# Gradle
+######################
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+ 
+######################
+# Package Files
+######################
+*.jar
+*.war
+*.ear
+*.db
+ 
+# Folder config file
+Desktop.ini
+ 
+######################
+# Mac OSX
+######################
+.DS_Store
+.svn
+  
+######################
+# Directories
+######################
+/build/
+/bin/
+/deploy/
+
+######################
+# Logs
+######################
+*.log
+ 
+######################
+# Others
+######################
+*.class
+*.*~
+*~
+.merge_file*
+ 
