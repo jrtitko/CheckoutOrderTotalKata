@@ -20,7 +20,7 @@ class CheckoutOrderIT extends Specification {
     Pricing milkPricing = new StandardPricingImpl(3.16)
     Pricing bananasPricing = new StandardPricingImpl(0.50)
     Pricing cheesePricing = new StandardPricingImpl(2.00)
-    Pricing soupPricing = new MarkdownPricingImpl(0.75, 0.25)
+    Pricing soupPricing = new MarkdownPricingImpl(0.75, 0.25d)
 
     void setup() {
         Map<String, Double> prices = new HashMap<>();
