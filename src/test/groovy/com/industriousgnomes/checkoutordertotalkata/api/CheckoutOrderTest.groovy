@@ -90,25 +90,19 @@ class CheckoutOrderTest extends Specification {
             noExceptionThrown()
     }
 
-    def "Should retrieve the value of a scanned item with a price by weight"() {
+    def "Should retrieve the value of a scanned item #itemToScan with a weight of #weight"() {
         given:
-            checkoutOrder.scanItem("bananas", 1.6)
+            checkoutOrder.scanItem(itemToScan, weight)
 
         when:
             def total = checkoutOrder.getTotal()
 
         then:
-            total == 0.80
-    }
+            total == price
 
-    def "Should retrieve the value of the same item with a different weight"() {
-        given:
-            checkoutOrder.scanItem("bananas", 2.0)
-
-        when:
-            def total = checkoutOrder.getTotal()
-
-        then:
-            total == 1.00
+        where:
+            itemToScan  | weight    | price
+            "bananas"   | 1.6       | 0.80
+            "bananas"   | 2.0       | 1.00
     }
 }
