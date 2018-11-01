@@ -1,9 +1,12 @@
 package com.industriousgnomes.checkoutordertotalkata.api
 
+import com.industriousgnomes.checkoutordertotalkata.exception.InvalidItemException
 import com.industriousgnomes.checkoutordertotalkata.service.PriceService
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
+
+import java.util.logging.Logger
 
 /*
     IntelliJ IDEA Commands and shortcuts used during this course can be found at
@@ -30,8 +33,11 @@ class CheckoutOrderTest extends Specification {
 
     PriceService priceService = Mock()
 
+    Logger logger = Mock()
+
     void setup() {
         checkoutOrder = new CheckoutOrder(
+                logger: logger,
                 priceService: priceService
         )
 
@@ -39,6 +45,7 @@ class CheckoutOrderTest extends Specification {
         priceService.getPrice("milk")  >> 3.16
         priceService.getPrice("bananas") >> 0.50
         priceService.getPrice("cheese") >> 2.00
+        priceService.getPrice("tofu") >> { throw new InvalidItemException("tofu")}
     }
 
     def "Should successfully scan an item"() {
@@ -119,5 +126,16 @@ class CheckoutOrderTest extends Specification {
 
         then:
             total == 3.30
+    }
+
+    def "Should log a message when an invalid item is scanned"() {
+        given:
+            def itemToScan = "tofu"
+
+        when:
+            checkoutOrder.scanItem(itemToScan)
+
+        then:
+            1 * logger.info("Invalid item: tofu")
     }
 }
