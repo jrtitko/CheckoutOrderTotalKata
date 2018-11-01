@@ -2,7 +2,9 @@ package com.industriousgnomes.checkoutordertotalkata.service
 
 import spock.lang.Specification
 import spock.lang.Subject
+import spock.lang.Unroll
 
+@Unroll
 class PriceServiceImplTest extends Specification {
 
     @Subject
@@ -19,25 +21,16 @@ class PriceServiceImplTest extends Specification {
         )
     }
 
-    def "Should get the price of an item"() {
-        given:
-            def item = "bread"
-
+    def "Should get the price of #item"() {
         when:
             def price = priceService.getPrice(item)
 
         then:
-            price == 1.00
-    }
+            price == itemPrice
 
-    def "Should get the price of a different item"() {
-        given:
-            def item = "milk"
-
-        when:
-            def price = priceService.getPrice(item)
-
-        then:
-            price == 3.16
+        where:
+            item    | itemPrice
+            "bread" | 1.00
+            "milk"  | 3.16
     }
 }
