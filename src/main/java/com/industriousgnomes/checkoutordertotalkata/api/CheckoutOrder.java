@@ -11,7 +11,7 @@ public class CheckoutOrder {
     private PriceService priceService;
 
     public void scanItem(String item) {
-        total += priceService.getPrice(item);
+        scanItem(item, 1);
     }
 
     public void scanItem(String item, double units) {
