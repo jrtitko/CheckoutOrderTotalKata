@@ -14,8 +14,8 @@ public class CheckoutOrder {
         total += priceService.getPrice(item);
     }
 
-    public void scanItem(String item, double weight) {
-        total += priceService.getPrice(item) * weight;
+    public void scanItem(String item, double units) {
+        total += priceService.getPrice(item) * units;
     }
 
     public double getTotal() {
