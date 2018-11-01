@@ -17,6 +17,8 @@ class CheckoutOrderIT extends Specification {
         Map<String, Double> prices = new HashMap<>();
         prices.put("bread", 1.00)
         prices.put("milk", 3.16)
+        prices.put("bananas", 0.50)
+        prices.put("cheese", 2.00)
 
         priceService = new PriceServiceImpl(
                 prices: prices
@@ -31,11 +33,13 @@ class CheckoutOrderIT extends Specification {
         given:
             checkoutOrder.scanItem("bread")
             checkoutOrder.scanItem("milk")
+            checkoutOrder.scanItem("bananas", 1.6)
+            checkoutOrder.scanItem("cheese", 1.25)
 
         when:
             def total = checkoutOrder.getTotal();
 
         then:
-            total == 4.16
+            total == 7.46
     }
 }
