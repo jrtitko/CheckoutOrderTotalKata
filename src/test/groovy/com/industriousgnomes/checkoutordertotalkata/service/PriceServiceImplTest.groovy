@@ -1,6 +1,7 @@
 package com.industriousgnomes.checkoutordertotalkata.service
 
 import com.industriousgnomes.checkoutordertotalkata.exception.InvalidItemException
+import com.industriousgnomes.checkoutordertotalkata.strategy.Pricing
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
@@ -13,10 +14,18 @@ class PriceServiceImplTest extends Specification {
 
     private Map<String, Double> itemPrices = new HashMap<>();
 
+    Pricing breadPricing = Mock()
+    Pricing milkPricing = Mock()
+    Pricing soupPricing = Mock()
+
     void setup() {
-        itemPrices.put("bread", 1.00d)
-        itemPrices.put("milk", 3.16d)
-        itemPrices.put("soup", 0.75d)
+        breadPricing.calculatePrice() >> 1.00
+        milkPricing.calculatePrice() >> 3.16
+        soupPricing.calculatePrice() >> 0.50
+
+        itemPrices.put("bread", breadPricing)
+        itemPrices.put("milk", milkPricing)
+        itemPrices.put("soup", soupPricing)
 
         priceService = new PriceServiceImpl(
                 itemPrices: itemPrices
