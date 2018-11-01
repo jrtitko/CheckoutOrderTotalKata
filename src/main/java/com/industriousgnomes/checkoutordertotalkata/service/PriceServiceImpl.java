@@ -8,6 +8,6 @@ public class PriceServiceImpl implements PriceService {
 
     @Override
     public double getPrice(String item) {
-        return 0;
+        return 1.00;
     }
 }
