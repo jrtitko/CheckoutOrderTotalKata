@@ -1,7 +1,6 @@
 package com.industriousgnomes.checkoutordertotalkata.service
 
 import com.industriousgnomes.checkoutordertotalkata.exception.InvalidItemException
-import spock.lang.Ignore
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
@@ -36,7 +35,6 @@ class PriceServiceImplTest extends Specification {
             "milk"  | 3.16
     }
 
-    @Ignore("Due to a method signature change, existing tests must be updated")
     def "Should throw an InvalidItemException if the item cannot be found"() {
         given:
             def item = "tofu"
