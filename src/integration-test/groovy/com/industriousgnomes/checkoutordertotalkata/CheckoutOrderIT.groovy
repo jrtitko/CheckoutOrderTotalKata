@@ -15,13 +15,13 @@ class CheckoutOrderIT extends Specification {
 
     void setup() {
         Map<String, Double> prices = new HashMap<>();
-        prices.put("bread", 1.00)
-        prices.put("milk", 3.16)
-        prices.put("bananas", 0.50)
-        prices.put("cheese", 2.00)
+        prices.put("bread", 1.00d)
+        prices.put("milk", 3.16d)
+        prices.put("bananas", 0.50d)
+        prices.put("cheese", 2.00d)
 
         priceService = new PriceServiceImpl(
-                prices: prices
+                itemPrices: prices
         )
 
         checkoutOrder = new CheckoutOrder(
