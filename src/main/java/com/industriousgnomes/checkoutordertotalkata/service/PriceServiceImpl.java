@@ -11,6 +11,9 @@ public class PriceServiceImpl implements PriceService {
 
     @Override
     public double getPrice(String item) throws InvalidItemException {
-        return itemPrices.get(item);
+        if (itemPrices.containsKey(item)) {
+            return itemPrices.get(item);
+        }
+        throw new InvalidItemException(item);
     }
 }
