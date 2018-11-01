@@ -22,4 +22,15 @@ class PriceServiceImplTest extends Specification {
         then:
             price == 1.00
     }
+
+    def "Should get the price of a different item"() {
+        given:
+            def item = "milk"
+
+        when:
+            def price = priceService.getPrice(item)
+
+        then:
+            price == 3.16
+    }
 }
