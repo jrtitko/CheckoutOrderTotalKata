@@ -6,9 +6,9 @@ public class CheckoutOrder {
 
     public void scanItem(String item) {
         if (item.equalsIgnoreCase("bread")) {
-            total = 1.00;
+            total += 1.00;
         } else if (item.equalsIgnoreCase("milk")) {
-            total = 3.16;
+            total += 3.16;
         }
     }
 
