@@ -8,6 +8,11 @@ public class PriceServiceImpl implements PriceService {
 
     @Override
     public double getPrice(String item) {
-        return 1.00;
+        if (item.equalsIgnoreCase("bread")) {
+            return 1.00;
+        } else if (item.equalsIgnoreCase("milk")) {
+            return 3.16;
+        }
+        return 0.0;
     }
 }
