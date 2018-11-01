@@ -50,4 +50,15 @@ class CheckoutOrderTest extends Specification {
         then:
             total == 1.00
     }
+
+    def "Should retrieve the value of a different scanned item"() {
+        given:
+            checkoutOrder.scanItem("milk")
+
+        when:
+            def total = checkoutOrder.getTotal()
+
+        then:
+            total == 3.16
+    }
 }
