@@ -89,4 +89,15 @@ class CheckoutOrderTest extends Specification {
         then:
             noExceptionThrown()
     }
+
+    def "Should retrieve the value of a scanned item with a price by weight"() {
+        given:
+            checkoutOrder.scanItem("bananas", 1.6)
+
+        when:
+            def total = checkoutOrder.getTotal()
+
+        then:
+            total == 0.80
+    }
 }
