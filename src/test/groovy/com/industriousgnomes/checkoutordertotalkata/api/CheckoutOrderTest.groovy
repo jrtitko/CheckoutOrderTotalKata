@@ -37,6 +37,8 @@ class CheckoutOrderTest extends Specification {
 
         priceService.getPrice("bread") >> 1.00
         priceService.getPrice("milk")  >> 3.16
+        priceService.getPrice("bananas") >> 0.50
+        priceService.getPrice("cheese") >> 2.00
     }
 
     def "Should successfully scan an item"() {
