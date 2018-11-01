@@ -57,4 +57,16 @@ class CheckoutOrderTest extends Specification {
             "bread"    | 1.00
             "milk"     | 3.16
     }
+
+    def "Should scan multiple items together into a running total"() {
+        given:
+            checkoutOrder.scanItem("bread")
+            checkoutOrder.scanItem("milk")
+
+        when:
+            def total = checkoutOrder.getTotal()
+
+        then:
+            total == 4.16
+    }
 }
