@@ -104,5 +104,6 @@ class CheckoutOrderTest extends Specification {
             itemToScan  | weight    | price
             "bananas"   | 1.6       | 0.80
             "bananas"   | 2.0       | 1.00
+            "cheese"    | 1.25      | 2.50
     }
 }
