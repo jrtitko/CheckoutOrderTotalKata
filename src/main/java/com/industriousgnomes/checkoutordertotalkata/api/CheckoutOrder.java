@@ -5,7 +5,11 @@ public class CheckoutOrder {
     private double total = 0;
 
     public void scanItem(String item) {
-        total = 1.00;
+        if (item.equalsIgnoreCase("bread")) {
+            total = 1.00;
+        } else if (item.equalsIgnoreCase("milk")) {
+            total = 3.16;
+        }
     }
 
     public double getTotal() {
