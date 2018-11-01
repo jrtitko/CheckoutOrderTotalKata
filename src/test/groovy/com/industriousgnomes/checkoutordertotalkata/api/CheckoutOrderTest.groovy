@@ -77,4 +77,16 @@ class CheckoutOrderTest extends Specification {
         then:
             total == 4.16
     }
+
+    def "Should successfully scan an item with a price by weight"() {
+        given:
+            def itemToScan = "bananas"
+            def weight = 1.6
+
+        when:
+            checkoutOrder.scanItem(itemToScan, weight)
+
+        then:
+            noExceptionThrown()
+    }
 }
