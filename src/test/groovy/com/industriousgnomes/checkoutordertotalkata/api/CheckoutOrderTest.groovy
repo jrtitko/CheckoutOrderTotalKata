@@ -106,4 +106,16 @@ class CheckoutOrderTest extends Specification {
             "bananas"   | 2.0       | 1.00
             "cheese"    | 1.25      | 2.50
     }
+
+    def "Should scan multiple items with price by weight into a running total"() {
+        given:
+            checkoutOrder.scanItem("bananas", 1.6)
+            checkoutOrder.scanItem("cheese", 1.25)
+
+        when:
+            def total = checkoutOrder.getTotal()
+
+        then:
+            total == 3.30
+    }
 }
