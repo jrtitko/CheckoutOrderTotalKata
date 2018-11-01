@@ -2,6 +2,7 @@ package com.industriousgnomes.checkoutordertotalkata.api
 
 import spock.lang.Specification
 import spock.lang.Subject
+import spock.lang.Unroll
 
 /*
     IntelliJ IDEA Commands and shortcuts used during this course can be found at
@@ -20,6 +21,7 @@ import spock.lang.Subject
     Cheese      | Yes     | 2.00
  */
 
+@Unroll
 class CheckoutOrderTest extends Specification {
 
     @Subject
@@ -40,25 +42,19 @@ class CheckoutOrderTest extends Specification {
             noExceptionThrown()
     }
 
-    def "Should retrieve the value of a scanned item"() {
+    def "Should retrieve the value of scanned item #itemToScan"() {
         given:
-            checkoutOrder.scanItem("bread")
+            checkoutOrder.scanItem(itemToScan)
 
         when:
             def total = checkoutOrder.getTotal()
 
         then:
-            total == 1.00
-    }
+            total == price
 
-    def "Should retrieve the value of a different scanned item"() {
-        given:
-            checkoutOrder.scanItem("milk")
-
-        when:
-            def total = checkoutOrder.getTotal()
-
-        then:
-            total == 3.16
+        where:
+            itemToScan | price
+            "bread"    | 1.00
+            "milk"     | 3.16
     }
 }
