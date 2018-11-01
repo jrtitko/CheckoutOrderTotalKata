@@ -39,4 +39,15 @@ class CheckoutOrderTest extends Specification {
         then:
             noExceptionThrown()
     }
+
+    def "Should retrieve the value of a scanned item"() {
+        given:
+            checkoutOrder.scanItem("bread")
+
+        when:
+            def total = checkoutOrder.getTotal()
+
+        then:
+            total == 1.00
+    }
 }
