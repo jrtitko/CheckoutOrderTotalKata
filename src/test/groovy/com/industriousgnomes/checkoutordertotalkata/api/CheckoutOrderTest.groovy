@@ -1,5 +1,6 @@
 package com.industriousgnomes.checkoutordertotalkata.api
 
+import com.industriousgnomes.checkoutordertotalkata.service.PriceService
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
@@ -27,8 +28,15 @@ class CheckoutOrderTest extends Specification {
     @Subject
     CheckoutOrder checkoutOrder
 
+    PriceService priceService = Mock()
+
     void setup() {
-        checkoutOrder = new CheckoutOrder()
+        checkoutOrder = new CheckoutOrder(
+                priceService: priceService
+        )
+
+        priceService.getPrice("bread") >> 1.00
+        priceService.getPrice("milk")  >> 3.16
     }
 
     def "Should successfully scan an item"() {

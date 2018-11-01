@@ -1,15 +1,17 @@
 package com.industriousgnomes.checkoutordertotalkata.api;
 
+import com.industriousgnomes.checkoutordertotalkata.service.PriceService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class CheckoutOrder {
 
     private double total = 0;
 
+    @Autowired
+    private PriceService priceService;
+
     public void scanItem(String item) {
-        if (item.equalsIgnoreCase("bread")) {
-            total += 1.00;
-        } else if (item.equalsIgnoreCase("milk")) {
-            total += 3.16;
-        }
+        total += priceService.getPrice(item);
     }
 
     public double getTotal() {
