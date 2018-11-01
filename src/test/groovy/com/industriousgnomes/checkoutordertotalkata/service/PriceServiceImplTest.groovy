@@ -16,6 +16,7 @@ class PriceServiceImplTest extends Specification {
     void setup() {
         itemPrices.put("bread", 1.00d)
         itemPrices.put("milk", 3.16d)
+        itemPrices.put("soup", 0.75d)
 
         priceService = new PriceServiceImpl(
                 itemPrices: itemPrices
@@ -46,4 +47,16 @@ class PriceServiceImplTest extends Specification {
             def e = thrown(InvalidItemException)
             e.getMessage() == "tofu"
     }
+
+    def "Should retrieve the price of a marked down item"() {
+        given:
+            def item = "soup"
+
+        when:
+            def price = priceService.getPrice(item);
+
+        then:
+            price == 0.50
+    }
+
 }
