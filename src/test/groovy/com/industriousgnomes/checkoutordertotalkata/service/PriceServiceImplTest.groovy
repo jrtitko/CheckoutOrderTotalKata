@@ -8,8 +8,15 @@ class PriceServiceImplTest extends Specification {
     @Subject
     PriceService priceService
 
+    private Map<String, Double> itemPrices = new HashMap<>();
+
     void setup() {
-        priceService = new PriceServiceImpl()
+        itemPrices.put("bread", 1.00d)
+        itemPrices.put("milk", 3.16d)
+
+        priceService = new PriceServiceImpl(
+                itemPrices: itemPrices
+        )
     }
 
     def "Should get the price of an item"() {
