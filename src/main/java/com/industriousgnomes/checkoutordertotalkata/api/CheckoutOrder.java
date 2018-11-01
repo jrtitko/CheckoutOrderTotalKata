@@ -15,7 +15,7 @@ public class CheckoutOrder {
     }
 
     public void scanItem(String item, double weight) {
-        total = 0.80;
+        total = 0.50 * weight;
     }
 
     public double getTotal() {
