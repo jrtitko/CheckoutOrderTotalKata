@@ -100,4 +100,15 @@ class CheckoutOrderTest extends Specification {
         then:
             total == 0.80
     }
+
+    def "Should retrieve the value of the same item with a different weight"() {
+        given:
+            checkoutOrder.scanItem("bananas", 2.0)
+
+        when:
+            def total = checkoutOrder.getTotal()
+
+        then:
+            total == 1.00
+    }
 }
