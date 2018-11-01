@@ -16,9 +16,9 @@ public class CheckoutOrder {
 
     public void scanItem(String item, double weight) {
         if (item.equalsIgnoreCase("bananas")) {
-            total = 0.50 * weight;
+            total += 0.50 * weight;
         } else if (item.equalsIgnoreCase("cheese")) {
-            total = 2.00 * weight;
+            total += 2.00 * weight;
         }
     }
 
