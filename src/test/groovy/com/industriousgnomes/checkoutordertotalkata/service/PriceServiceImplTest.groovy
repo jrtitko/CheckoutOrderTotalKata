@@ -33,4 +33,16 @@ class PriceServiceImplTest extends Specification {
             "bread" | 1.00
             "milk"  | 3.16
     }
+
+    def "Should throw an InvalidItemException if the item cannot be found"() {
+        given:
+            def item = "tofu"
+
+        when:
+            priceService.getPrice(item)
+
+        then:
+            def e = thrown(InvalidItemException)
+            e.getMessage() == "tofu"
+    }
 }
